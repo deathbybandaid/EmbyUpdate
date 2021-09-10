@@ -2,7 +2,7 @@ import os
 import sys
 import platform
 
-from EmbyUpdate import EmbyUpdate_VERSION
+from EmbyUpdate import EmbyUpdate_VERSION, EmbyUpdate_OBJ
 from EmbyUpdate.tools import is_docker
 
 

@@ -2,8 +2,7 @@ import os
 import argparse
 import pathlib
 
-from EmbyUpdate import EmbyUpdate_VERSION
-# import EmbyUpdate.exceptions
+from EmbyUpdate import EmbyUpdate_VERSION, EmbyUpdate_OBJ
 import EmbyUpdate.config
 import EmbyUpdate.logger
 import EmbyUpdate.versions
@@ -24,10 +23,12 @@ def build_args_parser(script_dir):
     return parser.parse_args()
 
 
-def run(settings, logger, script_dir, versions, deps):
+def run(settings, logger, script_dir, versions, deps, web):
     """
     Run EmbyUpdate.
     """
+
+    embyupdate = EmbyUpdate_OBJ(settings, logger, versions, web, deps)
 
     try:
 
@@ -65,7 +66,7 @@ def start(args, script_dir, deps):
     # Setup Version System
     versions = EmbyUpdate.versions.Versions(settings, logger, web)
 
-    return run(settings, logger, script_dir, versions, deps)
+    return run(settings, logger, script_dir, versions, deps, web)
 
 
 def config_setup(args, script_dir):
