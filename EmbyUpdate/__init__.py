@@ -23,23 +23,30 @@ class EmbyUpdate_OBJ():
 
     def update_check(self):
 
-        response = self.web.get(self.release_url)
-        updatejson = json.loads(response.text)
+        self.logger.debug("Checking Emby Releases.")
+        try:
 
-        # Here we search the github API response for the most recent version of beta or stable depending on what was chosen
-        # above.
-        for i, entry in enumerate(updatejson):
+            response = self.web.get(self.release_url)
+            updatejson = json.loads(response.text)
 
-            if self.release_version == 'beta':
+            # Here we search the github API response for the most recent version of beta or stable depending on what was chosen
+            # above.
+            for i, entry in enumerate(updatejson):
 
-                if entry["prerelease"] is True:
-                    onlineversion = entry["tag_name"]
-                    versiontype = "beta"
-                    break
+                if self.release_version == 'beta':
 
-            else:
+                    if entry["prerelease"] is True:
+                        onlineversion = entry["tag_name"]
+                        versiontype = "beta"
+                        break
 
-                if entry["prerelease"] is False:
-                    onlineversion = entry["tag_name"]
-                    versiontype = "stable"
-                    break
+                else:
+
+                    if entry["prerelease"] is False:
+                        onlineversion = entry["tag_name"]
+                        versiontype = "stable"
+                        break
+
+        except Exception as e:
+            self.logger.error("EmbyUpdate: We didn't get an expected response from the github api, script is exiting!")
+            self.logger.error("EmbyUpdate: Here's the error we got: %s" % e)
