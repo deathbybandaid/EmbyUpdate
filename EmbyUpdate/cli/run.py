@@ -63,10 +63,8 @@ def start(args, script_dir, deps):
 
     # Setup Version System
     versions = EmbyUpdate.versions.Versions(settings, logger, web)
-    print(versions.dict)
 
-    # return run(settings, logger, script_dir, versions, deps)
-    return ERR_CODE
+    return run(settings, logger, script_dir, versions, deps)
 
 
 def config_setup(args, script_dir):
