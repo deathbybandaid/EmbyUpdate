@@ -10,6 +10,16 @@
                         "value": "none",
                         "config_file": true,
                         "description": "The currently installed version."
+                      },
+          "serverstop":{
+                        "value": true,
+                        "config_file": true,
+                        "description": "Stop the Server prior to install."
+                      },
+          "serverstart":{
+                        "value": true,
+                        "config_file": true,
+                        "description": "Start the server after install."
                       }
           }
 }

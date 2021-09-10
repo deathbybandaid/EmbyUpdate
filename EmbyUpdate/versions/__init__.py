@@ -1,6 +1,7 @@
 import os
 import sys
 import platform
+import distro
 import json
 
 from EmbyUpdate import EmbyUpdate_VERSION
@@ -104,13 +105,25 @@ class Versions():
         opersystem = platform.system()
         self.register_version("Operating System", opersystem, "env")
 
-        if opersystem in ["Linux", "Darwin"]:
+        if opersystem in ["Linux"]:
+
+            # Linux/Mac
+            if os.getuid() == 0 or os.geteuid() == 0:
+                self.logger.warning('Do not run EmbyUpdate with root privileges.')
+
+        elif opersystem in ["Darwin"]:
+
+            self.logger.error('Do not run EmbyUpdate on Mac.')
+            sys.exit(0)
 
             # Linux/Mac
             if os.getuid() == 0 or os.geteuid() == 0:
                 self.logger.warning('Do not run EmbyUpdate with root privileges.')
 
         elif opersystem in ["Windows"]:
+
+            self.logger.error('Do not run EmbyUpdate on Windows.')
+            sys.exit(0)
 
             # Windows
             if os.environ.get("USERNAME") == "Administrator":
@@ -121,6 +134,9 @@ class Versions():
 
         cpu_type = platform.machine()
         self.register_version("CPU Type", cpu_type, "env")
+
+        distrobution = distro.id()
+        self.register_version("Distro", distrobution, "env")
 
         isdocker = is_docker()
         self.register_version("Docker", isdocker, "env")
