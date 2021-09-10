@@ -62,7 +62,7 @@ def start(args, script_dir, deps):
     web = EmbyUpdate.web.WebReq()
 
     # Setup Version System
-    versions = EmbyUpdate.versions.Versions(settings, logger)
+    versions = EmbyUpdate.versions.Versions(settings, logger, web)
     print(versions.dict)
 
     # return run(settings, logger, script_dir, versions, deps)
