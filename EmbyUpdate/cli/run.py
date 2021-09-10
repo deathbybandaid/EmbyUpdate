@@ -88,6 +88,8 @@ def main(script_dir, deps):
         if args.setup:
             return config_setup(args, script_dir)  # TODO
 
+        print("Test ran")
+
         # return start(args, script_dir, deps)
 
     except KeyboardInterrupt:
