@@ -1,7 +1,9 @@
 {
-  "cache_dir":{
-                "value": "none",
-                "config_file": true,
-                "description": "The path to store the database, logs, and other files."
-              }
+  "main":{
+          "cache_dir":{
+                        "value": "none",
+                        "config_file": true,
+                        "description": "The path to store the database, logs, and other files."
+                      }
+          }
 }
