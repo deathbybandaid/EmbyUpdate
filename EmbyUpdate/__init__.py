@@ -5,7 +5,7 @@ EmbyUpdate_VERSION = "v3.2"
 
 class EmbyUpdate_INT_OBJ():
 
-    def __init__(self, settings, logger, versions, web, scheduler, deps):
+    def __init__(self, settings, logger, versions, web, deps):
         """
         An internal catalogue of core methods.
         """
