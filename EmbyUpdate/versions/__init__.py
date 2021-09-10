@@ -71,7 +71,7 @@ class Versions():
         else:
             prerelease = False
         onlineversion = self.get_current_github_release("doonze", "Embyupdate", prerelease)
-        print(onlineversion)
+        self.logger.debug("Online release of EmbyUpdate is %s" % onlineversion)
 
     def register_version(self, item_name, item_version, item_type):
         """
