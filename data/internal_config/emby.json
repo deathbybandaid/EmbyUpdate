@@ -1,0 +1,10 @@
+{
+  "emby":{
+          "release_version":{
+                        "value": "stable",
+                        "config_file": true,
+                        "valid_options": "stable,prerelease",
+                        "description": "The Release cycle of Emby to install."
+                      }
+          }
+}

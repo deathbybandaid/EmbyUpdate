@@ -9,6 +9,7 @@ import EmbyUpdate.versions
 import EmbyUpdate.web
 
 ERR_CODE = 1
+ERR_CODE_NO_RESTART = 2
 
 
 def build_args_parser(script_dir):
@@ -93,8 +94,6 @@ def main(script_dir, deps):
     except KeyboardInterrupt:
         print("\n\nInterrupted")
         return ERR_CODE
-
-    print("Test ran")
 
     return ERR_CODE
 
