@@ -33,9 +33,6 @@ class Logger():
     The logging System for EmbyUpdate.
     """
 
-    LOG_LEVEL_CUSTOM_NOOB = 25
-    LOG_LEVEL_CUSTOM_SSDP = 8
-
     def __init__(self, settings):
 
         self.config = settings
