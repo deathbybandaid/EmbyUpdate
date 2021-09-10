@@ -5,7 +5,7 @@ import pathlib
 from EmbyUpdate import EmbyUpdate_VERSION
 # import EmbyUpdate.exceptions
 import EmbyUpdate.config
-# import EmbyUpdate.logger
+import EmbyUpdate.logger
 # import EmbyUpdate.versions
 import EmbyUpdate.web
 
