@@ -93,7 +93,7 @@ def main(script_dir, deps):
 
         print("Test ran")
 
-        # return start(args, script_dir, deps)
+        return start(args, script_dir, deps)
 
     except KeyboardInterrupt:
         print("\n\nInterrupted")
