@@ -17,12 +17,12 @@ class EmbyUpdate_OBJ():
         self.web = web
         self.deps = deps
 
-        self.release_version = str(self.config.dict["emby"]["release_version"]).lower()
+        self.emby_release_version = str(self.config.dict["emby"]["release_version"]).lower()
 
     def update_check(self):
 
         self.logger.debug("Checking for current release of Emby")
-        if self.embyupdate_release_version in ["prerelease"]:
+        if self.emby_release_version in ["prerelease"]:
             prerelease = True
         else:
             prerelease = False
