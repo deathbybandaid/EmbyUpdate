@@ -28,6 +28,7 @@ class EmbyUpdate_OBJ():
     def update_check(self):
 
         print(self.versions.dict["Distro"])
+        print(self.versions.dict["CPU Type"])
 
         self.logger.debug("Checking for current release of Emby")
         if self.emby_release_version in ["prerelease"]:
