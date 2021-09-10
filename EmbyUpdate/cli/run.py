@@ -4,9 +4,10 @@ import pathlib
 
 from EmbyUpdate import EmbyUpdate_VERSION
 # import EmbyUpdate.exceptions
-# import EmbyUpdate.config
+import EmbyUpdate.config
 # import EmbyUpdate.logger
 # import EmbyUpdate.versions
+import EmbyUpdate.web
 
 ERR_CODE = 1
 
@@ -24,7 +25,7 @@ def build_args_parser(script_dir):
 
 def run(settings, logger, script_dir, versions, deps):
     """
-    Create EmbyUpdate and fHDHH_web objects, and run threads.
+    Run EmbyUpdate.
     """
 
     try:
@@ -42,28 +43,31 @@ def start(args, script_dir, deps):
     Get Configuration for EmbyUpdate and start.
     """
 
-    # try:
-    #    settings = EmbyUpdate.config.Config(args, script_dir)
-    # except EmbyUpdate.exceptions.ConfigurationError as e:
-    #    print(e)
-    #    return ERR_CODE
+    try:
+        settings = EmbyUpdate.config.Config(args, script_dir)
+    except EmbyUpdate.exceptions.ConfigurationError as e:
+        print(e)
+        return ERR_CODE
+
+    print(settings.dict)
 
     # Setup Logging
     # logger = EmbyUpdate.logger.Logger(settings)
     # settings.logger = logger
 
-    # logger.noob("Loading EmbyUpdate %s with EmbyUpdate_web %s" % (EmbyUpdate_VERSION))
+    # logger.noob("Loading EmbyUpdate %s" % (EmbyUpdate_VERSION))
     # logger.info("Importing Core config values from Configuration File: %s" % settings.config_file)
 
     # logger.debug("Logging to File: %s" % os.path.join(settings.internal["paths"]["logs_dir"], '.EmbyUpdate.log'))
 
-    # Continue non-core settings setup
-    # settings.secondary_setup()
+    # logger.debug("Setting Up shared Web Requests system.")
+    web = EmbyUpdate.web.WebReq()
 
     # Setup Version System
     # versions = EmbyUpdate.versions.Versions(settings, logger)
 
     # return run(settings, logger, script_dir, versions, deps)
+    return ERR_CODE
 
 
 def config_setup(args, script_dir):
@@ -71,9 +75,8 @@ def config_setup(args, script_dir):
     Setup Config file.
     """
 
-    # settings = EmbyUpdate.config.Config(args, script_dir)
-    # EmbyUpdate.plugins.PluginsHandler(settings)
-    # settings.setup_user_config()
+    settings = EmbyUpdate.config.Config(args, script_dir)
+    settings.setup_user_config()
     return ERR_CODE
 
 
