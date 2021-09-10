@@ -6,7 +6,7 @@ from EmbyUpdate import EmbyUpdate_VERSION
 # import EmbyUpdate.exceptions
 import EmbyUpdate.config
 import EmbyUpdate.logger
-# import EmbyUpdate.versions
+import EmbyUpdate.versions
 import EmbyUpdate.web
 
 ERR_CODE = 1
@@ -62,7 +62,8 @@ def start(args, script_dir, deps):
     web = EmbyUpdate.web.WebReq()
 
     # Setup Version System
-    # versions = EmbyUpdate.versions.Versions(settings, logger)
+    versions = EmbyUpdate.versions.Versions(settings, logger)
+    print(versions.dict)
 
     # return run(settings, logger, script_dir, versions, deps)
     return ERR_CODE
