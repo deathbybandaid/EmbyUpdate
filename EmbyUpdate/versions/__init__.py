@@ -15,6 +15,7 @@ class Versions():
     def __init__(self, settings, logger, web):
         self.logger = logger
         self.web = web
+        self.config = settings
 
         self.dict = {}
 
