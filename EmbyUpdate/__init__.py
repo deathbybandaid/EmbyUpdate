@@ -1,5 +1,4 @@
 # coding=utf-8
-import json
 
 EmbyUpdate_VERSION = "v3.2"
 
@@ -18,9 +17,14 @@ class EmbyUpdate_OBJ():
         self.web = web
         self.deps = deps
 
-        self.release_url = "https://api.github.com/repos/mediabrowser/Emby.releases/releases"
-        self.release_version = str(self.config.dict["main"]["release_version"]).lower()
+        self.release_version = str(self.config.dict["emby"]["release_version"]).lower()
 
     def update_check(self):
 
-        self.logger.debug("Checking Emby Releases.")
+        self.logger.debug("Checking for current release of Emby")
+        if self.embyupdate_release_version in ["prerelease"]:
+            prerelease = True
+        else:
+            prerelease = False
+        onlineversion = self.get_current_github_release("mediabrowser", "Emby.releases", prerelease)
+        self.logger.debug("Online release of Emby is %s" % onlineversion)
