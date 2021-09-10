@@ -5,7 +5,7 @@ EmbyUpdate_VERSION = "v3.2"
 
 class EmbyUpdate_INT_OBJ():
 
-    def __init__(self, settings, logger, db, plugins, versions, web, scheduler, deps):
+    def __init__(self, settings, logger, versions, web, scheduler, deps):
         """
         An internal catalogue of core methods.
         """
@@ -20,13 +20,13 @@ class EmbyUpdate_INT_OBJ():
 
 class EmbyUpdate_OBJ():
 
-    def __init__(self, settings, logger, db, plugins, versions, web, scheduler, deps):
+    def __init__(self, settings, logger, versions, web, deps):
         """
         The Core Backend.
         """
 
         logger.info("Initializing EmbyUpdate Core Functions.")
-        self.embyupdate = EmbyUpdate_INT_OBJ(settings, logger, db, plugins, versions, web, scheduler, deps)
+        self.embyupdate = EmbyUpdate_INT_OBJ(settings, logger, versions, web, deps)
 
     def __getattr__(self, name):
         """
