@@ -27,7 +27,7 @@ class EmbyUpdate_OBJ():
 
     def update_check(self):
 
-        print(self.versions.dict)
+        print(self.versions.dict["Distro"])
 
         self.logger.debug("Checking for current release of Emby")
         if self.emby_release_version in ["prerelease"]:
