@@ -18,6 +18,7 @@ class EmbyUpdate_OBJ():
         self.deps = deps
 
         self.emby_release_version = str(self.config.dict["emby"]["release_version"]).lower()
+        self.emby_installed_version = self.config.dict["emby"]["installed_version"]
 
     def update_check(self):
 
@@ -28,3 +29,8 @@ class EmbyUpdate_OBJ():
             prerelease = False
         onlineversion = self.versions.get_current_github_release("mediabrowser", "Emby.releases", prerelease)
         self.logger.debug("Online release of Emby is %s" % onlineversion)
+
+        if not self.emby_installed_version:
+            self.logger.info("Emby is either not installed, or this is the first run of EmbyUpdate.")
+        else:
+            self.logger.info("Current Installed version of Emby is %s. Online version is %s." % (self.emby_installed_version, onlineversion))

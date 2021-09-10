@@ -5,6 +5,11 @@
                         "config_file": true,
                         "valid_options": "stable,prerelease",
                         "description": "The Release cycle of Emby to install."
+                      },
+          "installed_version":{
+                        "value": "none",
+                        "config_file": true,
+                        "description": "The currently installed version."
                       }
           }
 }
