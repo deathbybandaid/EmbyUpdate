@@ -49,7 +49,7 @@ def start(args, script_dir, deps):
         print(e)
         return ERR_CODE
 
-    print(settings.dict)
+    print(settings.internal)
 
     # Setup Logging
     # logger = EmbyUpdate.logger.Logger(settings)
