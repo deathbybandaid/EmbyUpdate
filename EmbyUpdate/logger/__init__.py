@@ -76,6 +76,58 @@ class Logger():
         dictConfig(logging_config)
         self.logger = logging.getLogger('EmbyUpdate')
 
+    @property
+    def levelno(self):
+        """
+        Convert a configuration level name/number to applicable number.
+        """
+
+        if isint(self.config.dict["logging"]["level"]):
+
+            levels = sorted_levels("number")
+
+            if self.config.dict["logging"]["level"] in list(levels.keys()):
+                return int(self.config.dict["logging"]["level"])
+
+            else:
+                return closest_int_from_list(list(levels.keys()), int(self.config.dict["logging"]["level"]))
+        else:
+
+            levels = sorted_levels("name")
+            level = self.config.dict["logging"]["level"].upper()
+
+            if self.config.dict["logging"]["level"].upper() not in levels:
+                level = self.EmbyUpdate.config.conf_default["logging"]["level"]["value"]
+
+            return logging.getLevelName(level)
+
+    @property
+    def levelname(self):
+        """
+        Convert a configuration level name/number to applicable name.
+        """
+
+        if isint(self.config.dict["logging"]["level"]):
+
+            levels = sorted_levels("number")
+
+            if self.config.dict["logging"]["level"] in list(levels.keys()):
+                level = int(self.config.dict["logging"]["level"])
+
+            else:
+                level = closest_int_from_list(list(levels.keys()), int(self.config.dict["logging"]["level"]))
+
+            return logging.getLevelName(level)
+        else:
+
+            levels = sorted_levels("name")
+            level = self.config.dict["logging"]["level"].upper()
+
+            if self.config.dict["logging"]["level"].upper() not in levels:
+                level = self.EmbyUpdate.config.conf_default["logging"]["level"]["value"]
+
+            return level
+
     def __getattr__(self, name):
         """
         Quick and dirty shortcuts. Will only get called for undefined attributes.
