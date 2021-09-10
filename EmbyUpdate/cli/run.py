@@ -1,4 +1,4 @@
-# import os
+import os
 import argparse
 import pathlib
 
@@ -49,18 +49,16 @@ def start(args, script_dir, deps):
         print(e)
         return ERR_CODE
 
-    print(settings.internal)
-
     # Setup Logging
-    # logger = EmbyUpdate.logger.Logger(settings)
-    # settings.logger = logger
+    logger = EmbyUpdate.logger.Logger(settings)
+    settings.logger = logger
 
-    # logger.noob("Loading EmbyUpdate %s" % (EmbyUpdate_VERSION))
-    # logger.info("Importing Core config values from Configuration File: %s" % settings.config_file)
+    logger.info("Loading EmbyUpdate %s" % (EmbyUpdate_VERSION))
+    logger.info("Importing Core config values from Configuration File: %s" % settings.config_file)
 
-    # logger.debug("Logging to File: %s" % os.path.join(settings.internal["paths"]["logs_dir"], '.EmbyUpdate.log'))
+    logger.debug("Logging to File: %s" % os.path.join(settings.internal["paths"]["logs_dir"], '.EmbyUpdate.log'))
 
-    # logger.debug("Setting Up shared Web Requests system.")
+    logger.debug("Setting Up shared Web Requests system.")
     web = EmbyUpdate.web.WebReq()
 
     # Setup Version System

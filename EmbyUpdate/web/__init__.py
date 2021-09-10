@@ -3,7 +3,7 @@ import requests
 
 class WebReq():
     """
-    The sessions manager for fHDHR.
+    The sessions manager for EmbyUpdate.
     """
 
     def __init__(self):
