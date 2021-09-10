@@ -26,5 +26,5 @@ class EmbyUpdate_OBJ():
             prerelease = True
         else:
             prerelease = False
-        onlineversion = self.get_current_github_release("mediabrowser", "Emby.releases", prerelease)
+        onlineversion = self.versions.get_current_github_release("mediabrowser", "Emby.releases", prerelease)
         self.logger.debug("Online release of Emby is %s" % onlineversion)
