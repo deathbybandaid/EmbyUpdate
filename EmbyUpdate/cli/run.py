@@ -20,6 +20,7 @@ def build_args_parser(script_dir):
     parser = argparse.ArgumentParser(description='EmbyUpdate')
     parser.add_argument('-c', '--config', dest='cfg', type=str, default=pathlib.Path(script_dir).joinpath('config.ini'), required=False, help='configuration file to load.')
     parser.add_argument('--setup', dest='setup', type=str, required=False, nargs='?', const=True, default=False, help='Setup Configuration file.')
+    parser.add_argument('-v', '--version', dest='version', type=str, required=False, nargs='?', const=True, default=False, help='Show Version Number.')
     return parser.parse_args()
 
 
@@ -84,6 +85,10 @@ def main(script_dir, deps):
 
     try:
         args = build_args_parser(script_dir)
+
+        if args.version:
+            print(EmbyUpdate_VERSION)
+            return ERR_CODE
 
         if args.setup:
             return config_setup(args, script_dir)  # TODO
