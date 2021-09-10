@@ -19,9 +19,27 @@ class EmbyUpdate_OBJ():
         self.deps = deps
 
         self.release_url = "https://api.github.com/repos/mediabrowser/Emby.releases/releases"
+        self.release_version = self.config.dict["main"]["release_version"]
 
     def update_check(self):
 
         response = self.web.get(self.release_url)
         updatejson = json.loads(response.text)
-        print(updatejson)
+
+        # Here we search the github API response for the most recent version of beta or stable depending on what was chosen
+        # above.
+        for i, entry in enumerate(updatejson):
+
+            if self.release_version == 'beta':
+
+                if entry["prerelease"] is True:
+                    onlineversion = entry["tag_name"]
+                    versiontype = "beta"
+                    break
+
+            else:
+
+                if entry["prerelease"] is False:
+                    onlineversion = entry["tag_name"]
+                    versiontype = "stable"
+                    break

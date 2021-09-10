@@ -4,6 +4,12 @@
                         "value": "none",
                         "config_file": true,
                         "description": "The path to store the database, logs, and other files."
+                      },
+          "release_version":{
+                        "value": "stable",
+                        "config_file": true,
+                        "valid_options": "stable,beta",
+                        "description": "The Release cycle of Emby to install."
                       }
           }
 }
